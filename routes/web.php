@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('home', function () {
-        return view('pages.blank-page', ['type_menu' => '']);
-    });
+        return view('pages.dashboard', ['type_menu' => '']);
+    })->name('home')->middleware('can:dashbord');
+    Route::get('profile-edit', function () {
+        return view('pages.profile', ['type_menu' => '']);
+    })->name('profile.edit');
+    Route::resource('user', UserController::class);
 });
