@@ -18,11 +18,11 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->unique()->sentence(2),
-            'description' => fake()->paragraph(),
-            'price' => fake()->randomDigit(2, 1, 1000),
+            'description' => fake()->text,
+            'price' => fake()->numberBetween($min = 5000, $max = 1000000),
             'image_url' => fake()->imageUrl(
-                $width = 640,
-                $height = 480,
+                $width = 200,
+                $height = 200,
             ),
         ];
     }
